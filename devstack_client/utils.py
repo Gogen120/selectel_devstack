@@ -18,6 +18,21 @@ def connect():
     )
 
 
+def check_required_params(ns):
+    def decorator(func):
+        def wrapped(*args, **kwargs):
+            try:
+                result = func(*args, **kwargs)
+            except keystoneauth1.exceptions.auth_plugins.MissingRequiredOptions:
+                ns.abort(403, 'Required parameters for keystone auth was not provided')
+
+            return result
+
+        return wrapped
+
+    return decorator
+
+
 def check_if_authorized(ns):
     def decorator(func):
         def wrapped(*args, **kwargs):

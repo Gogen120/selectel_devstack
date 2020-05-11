@@ -2,7 +2,7 @@ from openstack.exceptions import ResourceFailure
 
 from flask_restx import Namespace, Resource, fields
 
-from devstack_client.utils import connect, check_if_authorized
+from devstack_client.utils import connect, check_if_authorized, check_required_params
 from devstack_client.service.server import list_servers, find_server, get_server_info, delete_server
 from devstack_client.service.image import find_image
 from devstack_client.service.flavor import find_flavor
@@ -21,6 +21,7 @@ server_post = ns.model('Server', {
 
 @ns.route('')
 class ServerList(Resource):
+    @check_required_params(ns)
     @check_if_authorized(ns)
     def get(self):
         conn = connect()
@@ -33,6 +34,7 @@ class ServerList(Resource):
         }, 200
 
     @ns.expect(server_post)
+    @check_required_params(ns)
     @check_if_authorized(ns)
     def post(self):
         conn = connect()
@@ -64,6 +66,8 @@ class ServerList(Resource):
 
 @ns.route('/<server_id>')
 class Server(Resource):
+    @check_required_params(ns)
+    @check_if_authorized(ns)
     def get(self, server_id):
         conn = connect()
         server = find_server(conn, server_id)
@@ -75,6 +79,8 @@ class Server(Resource):
             'server': get_server_info(server)
         }, 200
 
+    @check_required_params(ns)
+    @check_if_authorized(ns)
     def delete(self, server_id):
         conn = connect()
         server = find_server(conn, server_id)
