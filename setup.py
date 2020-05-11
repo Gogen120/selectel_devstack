@@ -6,7 +6,7 @@ install_requires = [
     'flask==1.1.2',
     'flask-restx==0.2.0',
     'pytest==5.4.2',
-    'pytest-cov-2.8.1',
+    'pytest-cov==2.8.1',
     'pytest-flask==1.0.0',
     'Werkzeug==0.16',
 ]
