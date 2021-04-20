@@ -41,7 +41,7 @@ packaging==20.3
 pbr==5.4.5
 pluggy==0.13.1
 prettytable==0.7.2
-py==1.8.1
+py==1.10.0
 pycparser==2.20
 pyparsing==2.4.7
 pyperclip==1.8.0
