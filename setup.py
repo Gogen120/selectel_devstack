@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 install_requires = [
     'python-openstackclient==5.2.0',
     'flask==1.1.2',
-    'flask-restx==0.2.0',
+    'flask-restx==0.5.1',
     'pytest==5.4.2',
     'pytest-cov==2.8.1',
     'pytest-flask==1.0.0',
